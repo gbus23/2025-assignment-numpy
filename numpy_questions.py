@@ -48,7 +48,6 @@ def max_index(X):
 
     return i, j
 
-    return i, j
 
 
 def wallis_product(n_terms):
