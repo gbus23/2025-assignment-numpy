@@ -15,6 +15,7 @@ We also ask to respect the pep8 convention: https://pep8.org.
 This will be enforced with `flake8`. You can check that there is no flake8
 errors by calling `flake8` at the root of the repo.
 """
+
 import numpy as np
 
 
@@ -29,28 +30,22 @@ def max_index(X):
     Returns
     -------
     (i, j) : tuple(int)
-        The row and columnd index of the maximum.
+        The row and column index of the maximum.
 
     Raises
     ------
     ValueError
-        If the input is not a numpy array or
-        if the shape is not 2D.
+        If the input is not a numpy array or if the shape is not 2D.
     """
-    i = 0
-    j = 0
-
     if not isinstance(X, np.ndarray) or X.ndim != 2:
         raise ValueError("X must be a 2D numpy array")
 
     max_pos = np.argmax(X)
-    i, j = np.unravel_index(max_pos, X.shape)
-
-    return i, j
+    return np.unravel_index(max_pos, X.shape)
 
 
 def wallis_product(n_terms):
-    """Implement the Wallis product to compute an approximation of pi.
+    """Compute an approximation of pi using the Wallis product.
 
     See:
     https://en.wikipedia.org/wiki/Wallis_product
@@ -58,16 +53,14 @@ def wallis_product(n_terms):
     Parameters
     ----------
     n_terms : int
-        Number of steps in the Wallis product. Note that `n_terms=0` will
-        consider the product to be `1`.
+        Number of steps in the Wallis product. Note that `n_terms=0`
+        considers the product equal to 1.
 
     Returns
     -------
     pi : float
-        The approximation of order `n_terms` of pi using the Wallis product.
+        Approximation of pi using the Wallis product.
     """
-    # XXX : The n_terms is an int that corresponds to the number of
-    # terms in the product. For example 10000.
     if not isinstance(n_terms, int) or n_terms < 0:
         raise ValueError("n_terms must be a non-negative integer")
 
@@ -77,5 +70,4 @@ def wallis_product(n_terms):
         result *= (2 * k) / (2 * k - 1)
         result *= (2 * k) / (2 * k + 1)
 
-    return 2 * result
-
+    return 2.0 * result
